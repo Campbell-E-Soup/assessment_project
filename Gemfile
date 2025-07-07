@@ -61,3 +61,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+
+# Bootstrap
+gem "bootstrap", "~> 5.3"
+gem "sassc-rails"
