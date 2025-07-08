@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center mb-0 ms-3">
+  <h2 class="mb-0"><%= @customer.name %></h2>
+
+  <div class="d-flex gap-2 mb-0">
+    <!-- Edit and Delete will go here -->
+  </div>
+</div>
+<p class="mb-2 text-muted ms-3"><strong><%= @customer.business_type.name %></strong></p>
+<div class="card p-3 pt-2 shadow mb-3">
+    <div class="mb-2">
+        <p class="mb-0"><%= @customer.address1 %></p>
+        <% if @customer.address2.present? %>
+            <p class="mb-0"><%= @customer.address2 %></p>
+        <% end %>
+        <p class="mb-0"><%= @customer.city %>, <%= @customer.state %> <%= @customer.zip_code %></p>
+
+    </div>
+
+    <div> <!-- Days Available -->
+        <span><strong>Days: </strong></span>
+        <% @customer.days.each do |day| %>
+            <span class="badge bg-success me-1"><%= day.name_short %></span>
+        <% end %>
+    </div>
+
+    <p class="text-muted small mt-2 mb-0">
+        Added on <%= @customer.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%b %-d, %Y %l:%M %p") %>
+    </p>
+</div>
+<div class="d-flex justify-content-left mt-3 gap-2">
+  <%= link_to customer_path(@prev), class: "btn btn-outline-secondary shadow d-flex align-items-center justify-content-center", style: "width: 2rem; height: 2rem;" do %>
+    <i class="fa-solid fa-chevron-left fs-4"></i>
+  <% end %>
+
+  <%= link_to customer_path(@next), class: "btn btn-outline-secondary shadow d-flex align-items-center justify-content-center", style: "width: 2rem; height: 2rem;" do %>
+    <i class="fa-solid fa-chevron-right fs-4"></i>
+  <% end %>
+</div>

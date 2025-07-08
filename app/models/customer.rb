@@ -6,4 +6,12 @@ class Customer < ApplicationRecord
 
   validates :address1, :city, :state, :zip_code, :name, presence: true
   validates :days, presence: true # Enforces a customer having a day available for a delivery
+
+  def next
+    Customer.where("id > ?", id).order(:id).first || Customer.order(:id).first
+  end
+
+  def previous
+    Customer.where("id < ?", id).order(id: :desc).first || Customer.order(id: :desc).first
+  end
 end

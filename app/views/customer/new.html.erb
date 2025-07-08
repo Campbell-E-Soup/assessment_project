@@ -1,0 +1,58 @@
+<h2>Customer Information Form</h2>
+
+    <%= form_with model: @customer, url: new_customer_path, local: true do |f| %>
+        <div class="mb-3">
+            <%= f.label :name, "Customer Name" %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :address1, "Billing Address" %>
+            <%= f.text_field :address1, class: "form-control", placeholder: "Address Line 1" %>
+            <%= f.text_field :address2, class: "form-control", placeholder: "Address Line 2" %>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-3">
+                <%= f.label :city %>
+                <%= f.text_field :city, class: "form-control" %>
+            </div>
+
+            <div class="col-1">
+                <%= f.label :state %>
+                <%= f.text_field :state, class: "form-control", maxlength: 2 %>
+            </div>
+
+            <div class="col-2">
+                <%= f.label :zip_code %>
+                <%= f.text_field :zip_code, class: "form-control" maxlength: 10 %>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :phone %>
+            <%= f.telephone_field :phone, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+            <%= f.label :business_type_id, "Type of Business" %>
+            <%= f.collection_select :business_type_id, @business_types, :id, :name, { prompt: "Select Type" }, class: "form-select" %>
+        </div>
+
+        <div class="mb-3">
+            <p>Preferred Days of Receiving Shipments:</p>
+            <% @days.each do |day| %>
+            <div class="form-check form-check-inline">
+                <%= check_box_tag "customer[day_ids][]", day.id, false, id: "day_#{day.id}", class: "form-check-input" %>
+                <%= label_tag "day_#{day.id}", day.name_short, class: "form-check-label" %>
+            </div>
+            <% end %>
+        </div>
+
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
