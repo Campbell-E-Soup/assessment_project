@@ -1,1 +1,27 @@
-<h1 class="btn btn-outline-primary">Hello World!</h1>
+<div class="container mt-3">
+  <% @customers.each do |customer| %>
+    <div class="card shadow-sm mb-2">
+      <div class="card-body py-2 px-3">
+        <!-- Keep customer name on only one row -->
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h3 class="card-title mb-0"><%= customer.name %></h3>
+          <div> <!-- Edit and Delete -->
+            <button class="btn btn-sm btn-outline-warning me-1">
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+        <h6 class="text-muted mb-1"><%= customer.business_type.name %></h6>
+
+        <p class="mt-1 mb-0">
+          <% customer.days.each do |day| %>
+            <span class="badge bg-secondary me-1"><%= day.name_short %></span>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
