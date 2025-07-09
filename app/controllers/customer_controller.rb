@@ -51,12 +51,12 @@ class CustomerController < ApplicationController
     end
 
     # DELETE /customer/:id
-    def destroy 
+    def destroy
         @customer = Customer.find_by(id: params[:id])
         if @customer.nil?
             redirect_to root_path, alert: "Customer with id '#{params[:id]}' could not be found."
         end
-        
+
         @customer.destroy
 
         redirect_to root_path, notice: "Customer successfully deleted."

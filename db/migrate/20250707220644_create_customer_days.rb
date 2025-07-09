@@ -8,6 +8,6 @@ class CreateCustomerDays < ActiveRecord::Migration[8.0]
     end
 
     # Prevent duplicates
-    add_index :customer_days, [:customer_id, :day_id], unique: true
+    add_index :customer_days, [ :customer_id, :day_id ], unique: true
   end
 end

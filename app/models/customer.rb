@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   has_many :customer_days, dependent: :destroy
   has_many :days, through: :customer_days
 
-  
+
   validates :name, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "email must exist" }
   validates :phone, presence: true, format: { with: /\A\(?\d{3}\)?[\s\-]?\d{3}\-?\d{4}\z/, message: "must be a valid phone number" }
