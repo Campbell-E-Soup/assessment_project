@@ -1,41 +1,59 @@
-  <div class="table-container rounded border shadow-sm overflow-hidden">
-    <table class="table table-sm table-hover table-striped align-middle mb-0">
-      <thead class="table-light">
-        <tr>
-          <th>Name</th>
-          <th>Business Type</th>
-          <th>State </th>
-          <th>Days</th>
-          <th>Added</th>
-          <th class="text-end no-sort" data-sort-method="none">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td>
-              <%= link_to customer.name, show_customer_path(customer) %>
-            </td>
-            <td><%= customer.business_type.name %></td>
-            <td><%= customer.state %></td>
-            <td>
-              <% customer.days.each do |day| %>
-                <span class="badge bg-success me-1"><%= day.name_short %></span>
-              <% end %>
-            </td>
-            <td class="text-nowrap text-muted small">
-              <%= customer.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%b %-d, %Y %l:%M %p") %>
-            </td>
-            <td class="text-end">
-              <button class="btn btn-sm btn-outline-warning me-1">
-                <i class="fa-solid fa-pencil"></i>
-              </button>
-              <%= button_to delete_customer_path(customer), method: :delete, class: "btn btn-sm btn-outline-danger", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
-                <i class="fa-solid fa-trash-can"></i>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div id="index">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">All Customers</h2>
+
+    <%= button_to new_customer_path, method: :get, 
+      class: "btn btn-primary shadow d-flex align-items-center gap-2 px-3 py-1", 
+      form: { class: "d-inline" } do %>
+      <strong class="d-none d-sm-inline">Add Customer</strong>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
   </div>
+  <div class="table-container rounded border shadow-sm overflow-hidden">
+    <div class="table-responsive">
+      <table id="customer-table" class="table table-sm table-hover table-striped align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Business Type</th>
+            <th>State</th>
+            <th>Days</th>
+            <th>Added</th>
+            <th class="text-end no-sort" data-sort-method="none">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td class="text-nowrap">
+                <%= link_to customer.name, show_customer_path(customer) %>
+              </td>
+              <td class="text-nowrap"><%= customer.business_type.name %></td>
+              <td><%= customer.state %></td>
+              <td class="text-nowrap">
+                <% customer.days.each do |day| %>
+                  <span class="badge bg-success me-1"><%= day.name_short %></span>
+                <% end %>
+              </td>
+              <td class="text-nowrap text-muted small">
+                <%= customer.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%b %-d, %Y %l:%M %p") %>
+              </td>
+              <td class="text-end">
+                <%= button_to edit_customer_path(customer), method: :get, 
+                  class: "btn btn-sm btn-outline-primary", 
+                  form: { class: "d-inline"} do %>
+                  <i class="fa-solid fa-pencil"></i>
+                <% end %>
+                <%= button_to delete_customer_path(customer), method: :delete, 
+                  class: "btn btn-sm btn-outline-danger", 
+                  form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

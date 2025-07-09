@@ -19,6 +19,25 @@ class CustomerController < ApplicationController
         @days = Day.all
     end
 
+    # GET /customer/edit/:id
+    def edit
+        @customer = Customer.find(params[:id])
+        @business_types = BusinessType.all
+        @days = Day.all
+    end
+
+    # PATCH /customer/:id
+    def update
+        @customer = Customer.find(params[:id])
+        if @customer.update(customer_params)
+            redirect_to show_customer_path(@customer), notice: "Customer updated successfully."
+        else
+            @business_types = BusinessType.all
+            @days = Day.all
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
     # POST /customer
     def create
         @customer = Customer.new(customer_params)
@@ -40,7 +59,7 @@ class CustomerController < ApplicationController
         
         @customer.destroy
 
-        redirect_to root_path, notice: "Customer with id '#{params[:id]}' successfully deleted."
+        redirect_to root_path, notice: "Customer successfully deleted."
     end
 
     private

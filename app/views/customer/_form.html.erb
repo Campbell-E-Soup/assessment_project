@@ -1,0 +1,113 @@
+<%= form_with model: @customer, url: @customer.persisted? ? update_customer_path(@customer) : create_customer_path, method: @customer.persisted? ? :patch : :post, local: true do |f| %>
+        <div class="mb-3 row">
+            <div class="col-12 col-sm-7">
+                <%= f.label :name, "Customer Name" %>
+                <%= f.text_field :name, class: "form-control" %>
+                <% @customer.errors[:name].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Name <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="col-12 col-sm-5">
+                <%= f.label :business_type_id, "Type of Business" %>
+                <%= f.collection_select :business_type_id, @business_types, :id, :name, { prompt: "Select Type" }, class: "form-select" %>
+                <% @customer.errors[:business_type].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Business Type <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-6">
+                <%= f.label :address1, "Address Line 1" %>
+                <%= f.text_field :address1, class: "form-control", placeholder: "Address Line 1" %>
+                <% @customer.errors[:address1].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Address <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-6">
+                <%= f.label :address2, "Address Line 2" %>
+                <%= f.text_field :address2, class: "form-control", placeholder: "Address Line 2" %>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-sm-5 col-12">
+                <%= f.label :city %>
+                <%= f.text_field :city, class: "form-control" %>
+                <% @customer.errors[:city].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        City <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="col-sm-4 col-12">
+                <%= f.label :state %>
+                <%= f.select :state, us_states, { prompt: "Select a state" }, class: "form-select" %>
+                <% @customer.errors[:state].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        State <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="col-sm-3 col-12">
+                <%= f.label :zip_code %>
+                <%= f.text_field :zip_code, class: "form-control", maxlength: 10 %>
+                <% @customer.errors[:zip_code].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Zip code <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-6">
+                <%= f.label :phone %>
+                <%= f.telephone_field :phone, class: "form-control" %>
+                <% @customer.errors[:phone].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Phone <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+
+            <div class="col-6">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: "form-control" %>
+                <% @customer.errors[:email].each do |msg| %>
+                    <div class="invalid-feedback d-block mb-0">
+                        Email <%= msg %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <p>Preferred Days of Receiving Shipments:</p>
+            <div class="btn-group" role="group" aria-label="Days of Week">
+                <% @days.each do |day| %>
+                    <%= check_box_tag "customer[day_ids][]", day.id, @customer.day_ids.include?(day.id),
+                        id: "day_#{day.id}",
+                        class: "btn-check",
+                        autocomplete: "off" %>
+                    <%= label_tag "day_#{day.id}", day.name, class: "btn btn-outline-success" %>
+                <% end %>
+            </div>
+            <% if @customer.errors[:days].any? %>
+                <div class="invalid-feedback d-block">
+                    Please select a day.
+                </div>
+            <% end %>
+        </div>
+
+        <%= f.submit @customer.persisted? ? "Update" : "Submit", class: "btn btn-primary" %>
+    <% end %>

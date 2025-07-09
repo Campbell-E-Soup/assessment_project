@@ -2,7 +2,18 @@
   <h2 class="mb-0"><%= @customer.name %></h2>
   
   <div class="d-flex gap-2 mb-0">
-    <!-- Edit and Delete will go here -->
+    <%= button_to edit_customer_path(@customer), method: :get, 
+      class: "btn btn-outline-primary shadow d-flex align-items-center gap-2 px-3 py-1", 
+      form: { class: "d-inline"} do %>
+      <strong class="d-none d-sm-inline">Edit</strong>
+      <i class="fa-solid fa-pencil"></i>
+    <% end %>
+    <%= button_to delete_customer_path(@customer), method: :delete, 
+      class: "btn btn-outline-danger shadow d-flex align-items-center gap-2 px-3 py-1", 
+      form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
+      <strong class="d-none d-sm-inline">Delete</strong>
+      <i class="fa-solid fa-trash-can"></i>
+    <% end %>
   </div>
 </div>
 <p class="mb-0 text-muted ms-2"><strong><%= @customer.business_type.name %></strong></p>
@@ -10,7 +21,8 @@
     Added on <%= @customer.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%b %-d, %Y %l:%M %p") %>
 </p>
 <div class="row">
-  <div class="card p-3 pt-2 shadow mb-3 col-12 col-sm-6 me-2">
+  <div class="col-12 col-sm-6 mb-3">
+    <div class="card p-3 pt-2 shadow h-100">
       <div class="mb-2">
           <p class="mb-0"><%= @customer.address1 %></p>
           <% if @customer.address2.present? %>
@@ -18,6 +30,7 @@
           <% end %>
           <p class="mb-0"><%= @customer.city %>, <%= @customer.state %> <%= @customer.zip_code %></p>
       </div>
+    
 
       <div> <!-- Days Available -->
           <span><strong>Days: </strong></span>
@@ -25,11 +38,15 @@
               <span class="badge bg-success me-1"><%= day.name_short %></span>
           <% end %>
       </div>
+    </div>
   </div>
-  <div class="card p-3 pt-2 shadow mb-3 col-12 col-sm-5">
-        <p class="mb-1"><strong>Contact Information:</strong></p>
-        <p class="mb-0"><strong>Email: </strong><%= @customer.email %></p>
-        <p class="mb-0"><strong>Phone: </strong><%= @customer.phone %></p>
+
+  <div class="col-12 col-sm-6 mb-3">
+    <div class="card p-3 pt-2 shadow h-100">
+          <p class="mb-1"><strong>Contact Information:</strong></p>
+          <p class="mb-0"><strong>Email: </strong><%= @customer.email %></p>
+          <p class="mb-0"><strong>Phone: </strong><%= @customer.phone %></p>
+    </div>
   </div>
 </div>
 <div class="d-flex justify-content-center mt-3 gap-5">
