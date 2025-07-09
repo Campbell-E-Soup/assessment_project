@@ -31,6 +31,18 @@ class CustomerController < ApplicationController
         end
     end
 
+    # DELETE /customer/:id
+    def destroy 
+        @customer = Customer.find_by(id: params[:id])
+        if @customer.nil?
+            redirect_to root_path, alert: "Customer with id '#{params[:id]}' could not be found."
+        end
+        
+        @customer.destroy
+
+        redirect_to root_path, notice: "Customer with id '#{params[:id]}' successfully deleted."
+    end
+
     private
 
     # Creates customer from form data

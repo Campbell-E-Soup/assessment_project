@@ -1,3 +1,4 @@
+import "@hotwired/turbo-rails"
 import Tablesort from "tablesort"
 
 document.addEventListener("DOMContentLoaded", () => {

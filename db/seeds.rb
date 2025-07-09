@@ -35,8 +35,8 @@ end
 puts "Seeding Business Types completed..."
 
 customers = [
-    {name: "Main Street Supplies", business_type: "Corporation", address1: "123 Main Street", address2: "Suite 100", city: "Knoxville", state: "TN", zip_code: "37901", email: "mainstreetknox@example.com", days: "MTW"},
-    {name: "Emerald City Goods", business_type: "LLC", address1: "404 Yellow Brick Road", city: "The Emerald City", state: "KS", zip_code: "67905", phone: "(620) 555-0425", days: "MR"},
+    {name: "Main Street Supplies", business_type: "Corporation", address1: "123 Main Street", address2: "Suite 100", city: "Knoxville", state: "TN", zip_code: "37901", phone: "8655558920", email: "mainstreetknox@example.com", days: "MTW"},
+    {name: "Emerald City Goods", business_type: "LLC", address1: "404 Yellow Brick Road", city: "The Emerald City", state: "KS", zip_code: "67905", phone: "(620) 555-0425", email: "emeraldcity@example.com", days: "MR"},
     {name: "Clearview Market", business_type: "Other", address1: "505 West Drive", city: "Louisville", state: "KY", zip_code: "40229-2544", phone: "(502) 555-9876", email: "clearviewmarket@example.com", days: "WF"}
 ]
 

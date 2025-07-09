@@ -37,8 +37,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_09_020337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
-    t.string "email"
-    t.string "phone"
+    t.string "email", null: false
+    t.string "phone", null: false
     t.index ["business_type_id"], name: "index_customers_on_business_type_id"
   end
 

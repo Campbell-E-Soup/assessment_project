@@ -30,9 +30,9 @@
               <button class="btn btn-sm btn-outline-warning me-1">
                 <i class="fa-solid fa-pencil"></i>
               </button>
-              <button class="btn btn-sm btn-outline-danger">
+              <%= button_to delete_customer_path(customer), method: :delete, class: "btn btn-sm btn-outline-danger", form: { class: "d-inline", data: { turbo_confirm: "Are you sure?" } } do %>
                 <i class="fa-solid fa-trash-can"></i>
-              </button>
+              <% end %>
             </td>
           </tr>
         <% end %>

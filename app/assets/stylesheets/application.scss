@@ -15,13 +15,6 @@ label.btn-outline-success.active {
   border-color: #198754;
 }
 
-// Prevent from button displaying the usual bootstrap hover, making it look like it had not been pressed
-label.btn-outline-success.active:hover {
-  background-color: #157347; /* darker shade for pressed look */
-  color: #fff;
-  border-color: #157347;
-}
-
 // Smooth transition 
 label.btn-outline-success {
   transition: all 0.2s ease;
