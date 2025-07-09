@@ -1,2 +1,28 @@
 @import "bootstrap";
 @import "tablesort";
+
+// Add hovering for inactive check boxes in the customer form
+label.btn-outline-success:hover:not(.active) {
+  background-color: #198754;
+  color: #fff;
+  border-color: #198754;
+}
+
+// Default appearance
+label.btn-outline-success.active {
+  background-color: #198754;
+  color: #fff;
+  border-color: #198754;
+}
+
+// Prevent from button displaying the usual bootstrap hover, making it look like it had not been pressed
+label.btn-outline-success.active:hover {
+  background-color: #157347; /* darker shade for pressed look */
+  color: #fff;
+  border-color: #157347;
+}
+
+// Smooth transition 
+label.btn-outline-success {
+  transition: all 0.2s ease;
+}

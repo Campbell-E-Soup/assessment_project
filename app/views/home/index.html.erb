@@ -14,7 +14,7 @@
         <% @customers.each do |customer| %>
           <tr>
             <td>
-              <%= link_to customer.name, customer_path(customer) %>
+              <%= link_to customer.name, show_customer_path(customer) %>
             </td>
             <td><%= customer.business_type.name %></td>
             <td><%= customer.state %></td>

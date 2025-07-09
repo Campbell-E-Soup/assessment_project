@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_08_012951) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_09_020337) do
   create_table "business_types", force: :cascade do |t|
     t.string "name", limit: 25, null: false
     t.datetime "created_at", null: false
@@ -37,6 +37,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_08_012951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
+    t.string "email"
+    t.string "phone"
     t.index ["business_type_id"], name: "index_customers_on_business_type_id"
   end
 
