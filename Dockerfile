@@ -26,6 +26,8 @@ ENV RAILS_ENV="development" \
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
+ENV BUNDLE_PATH="/usr/local/bundle"
+
 # Install packages needed to build gems
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libyaml-dev pkg-config && \
@@ -52,6 +54,9 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 # Final stage for app image
 FROM base
 
+ENV BUNDLE_PATH="/usr/local/bundle"
+COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
@@ -67,4 +72,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["sh", "-c", "bundle exec rails db:prepare && ./bin/thrust ./bin/rails server"]
+CMD ["sh", "-c", "bundle exec rails db:prepare && ./bin/thrust ./bin/rails server -b 0.0.0.0 -p 3000"]
