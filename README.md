@@ -1,10 +1,10 @@
 # assessment_project
-The docker image is available [here](https://hub.docker.com/r/campbellesoup/assessment_project).
+The docker image is available [here](https://hub.docker.com/r/campbellesoup/assessment_project_final).
 
 Run the project using the Docker image from Docker Hub: 
 ```
-docker pull campbellesoup/assessment_project:latest
-docker run -p 3000:3000 campbellesoup/assessment_project
+docker pull campbellesoup/assessment_project_final:latest
+docker run -p 3000:3000 campbellesoup/assessment_project_final
 ```
 Then open your browser and go to:  http://localhost:3000
 
