@@ -9,7 +9,7 @@ docker run -p 3000:3000 campbellesoup/assessment_project
 Then open your browser and go to:  http://localhost:3000
 
 ## Entity Relationship Diagram
-A ER Diagram I made to plan the database  
+An ER Diagram I made to plan the database  
 
 ![AssessmentDiagram drawio (1)](https://github.com/user-attachments/assets/aa756e35-fdec-4865-9f81-ff7a448f65bb)
 
