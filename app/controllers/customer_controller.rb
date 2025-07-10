@@ -5,6 +5,7 @@ class CustomerController < ApplicationController
 
         if @customer.nil?
             redirect_to root_path, alert: "Customer with id '#{params[:id]}' could not be found."
+            return
         end
 
         # Allows us to link the next page based on id on the page
